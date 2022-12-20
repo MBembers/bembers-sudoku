@@ -1,8 +1,11 @@
 export default class Tile {
-  selected = false;
   hints = [];
   style = null;
-  correct = true;
+  correct = null;
   number = 0;
-  solved = false;
+  solid = false;
+  constructor(number = 0, solid = false) {
+    this.number = number;
+    this.solid = solid && number > 0;
+  }
 }

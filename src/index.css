@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  print-color-adjust: exact;
 }
 
 .main {
@@ -15,21 +16,37 @@ body {
   height: 100%;
 }
 .board {
-  width: 73vmin;
-  height: 72vmin;
+  width: 82vmin;
+  height: 81vmin;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   font-family: Helvetica;
 }
 .tile {
-  width: 8vmin;
-  height: 8vmin;
+  width: 9vmin;
+  height: 9vmin;
   text-align: center;
-  line-height: 8vmin;
+  line-height: 9vmin;
   font-size: 5vmin;
   font-weight: 100;
   background-color: darksalmon;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: #333;
+}
+.tile.correct-false {
+  color: rgb(138, 17, 17);
+}
+.hint {
+  width: 3vmin;
+  height: 3vmin;
+  text-align: center;
+  line-height: 3vmin;
+  font-size: 2vmin;
+  color: black;
 }
 .tile:nth-child(2n) {
   background-color: bisque;
@@ -43,14 +60,36 @@ body {
   border-right: 0.5vmin solid black;
 }
 .tile.selected-true {
-  filter: grayscale();
+  background-color: #aaaaaa;
+}
+.tile.solid-true {
+  color: black;
 }
 .panel {
   height: 20%;
   width: 100%;
 }
+.nums-table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.num-cell {
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid black;
+}
+.num-cell.num-all {
+  background-color: rgb(132, 220, 132);
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@media print {
+  .panel {
+    display: none;
+  }
 }
