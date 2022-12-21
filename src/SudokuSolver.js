@@ -1,3 +1,5 @@
+const MAX_ITERATIONS = 1e7;
+
 export default class SudokuSolver {
   constructor() {
     this.iterations = 0;
@@ -54,7 +56,7 @@ export default class SudokuSolver {
 
   solve(index, board, backwards) {
     this.iterations++;
-    if (this.iterations > 1e6) {
+    if (this.iterations > MAX_ITERATIONS) {
       return true;
     }
     while (index < 81 && board[index]) ++index;
@@ -74,8 +76,7 @@ export default class SudokuSolver {
     this.iterations = 0;
     let solve1 = JSON.parse(JSON.stringify(board));
     this.solve(0, solve1, false, 0);
-    console.log(this.iterations);
-    if (this.iterations > 1e6) {
+    if (this.iterations > MAX_ITERATIONS) {
       return [new Array(81).fill(0), "no solutions"];
     }
     this.iterations *= -1;

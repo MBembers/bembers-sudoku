@@ -5,27 +5,28 @@ body {
 }
 
 .main {
-  height: 100vh;
-  width: 72vmin;
+  height: 100vmin;
+  width: 100vmin;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0 auto;
+  margin-top: 10px;
 }
 .center {
-  width: 100%;
-  height: 100%;
+  width: 74vmin;
+  height: 72vmin;
 }
 .board {
-  width: 82vmin;
-  height: 81vmin;
+  width: 74vmin;
+  height: 72vmin;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   font-family: Helvetica;
 }
 .tile {
-  width: 9vmin;
-  height: 9vmin;
+  width: 8vmin;
+  height: 8vmin;
   text-align: center;
   line-height: 9vmin;
   font-size: 5vmin;
@@ -41,8 +42,9 @@ body {
   color: rgb(138, 17, 17);
 }
 .hint {
-  width: 3vmin;
-  height: 3vmin;
+  width: calc(8vmin / 3);
+  height: calc(8vmin / 3);
+
   text-align: center;
   line-height: 3vmin;
   font-size: 2vmin;
@@ -66,17 +68,32 @@ body {
   color: black;
 }
 .panel {
-  height: 20%;
-  width: 100%;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  padding-right: 5px;
 }
 .nums-table {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
+  justify-content: stretch;
+  width: 5vmin;
+}
+button {
+  font-size: 2vmin;
+  height: 10vmin;
+  margin-bottom: 2px;
 }
 .num-cell {
-  padding: 10px;
-  font-size: 20px;
+  width: 2vmin;
+  font-size: 2vmin;
+  text-align: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
   border: 1px solid black;
 }
 .num-cell.num-all {

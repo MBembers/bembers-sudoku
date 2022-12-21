@@ -78,7 +78,6 @@ function App() {
       return;
     }
     const solved = solution[0];
-    console.log("SOLUTION", solution);
     for (let index = 0; index < solved.length; index++) {
       b[index].number = solved[index];
     }
@@ -107,6 +106,7 @@ function App() {
           b[s].hints = [];
           b[s].number = num;
         }
+        // win(b);
       }
       if (e.key === "ArrowRight" && s < b.length - 1) {
         s++;
@@ -123,28 +123,35 @@ function App() {
     };
   }, [selected, b, hinting]);
 
+  const win = (b) => {
+    const nums2 = Array(10).fill(0);
+    b.forEach((tile) => {
+      nums2[tile.number]++;
+    });
+
+    let finished = true;
+    for (let k = 1; k < nums2.length; k++) {
+      if (nums2[k] < 9) {
+        finished = false;
+      }
+    }
+    if (finished) window.print();
+  };
+
   return (
     <div className="main">
       <div className="panel panel-left">
-        <button onClick={() => setHinting(!hinting)}>
-          {hinting ? "Tryb podpowiedzi" : "Tryb normalny"}
-        </button>
         <button onClick={downloadFile}>Pobierz plik z planszą</button>
         <button onClick={loadFile}>Załaduj planszę z pliku</button>
         <button onClick={checkValid}>Sprawdź poprawność planszy</button>
         <button onClick={solve}>Wypełnij sudoku</button>
-        <div className="nums-table">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
-            return (
-              <div
-                className={`num-cell ${nums[n] > 8 ? "num-all" : ""}`}
-                key={n + "n"}
-              >
-                {n}
-              </div>
-            );
-          })}
-        </div>
+        <button
+          onClick={() => {
+            window.print();
+          }}
+        >
+          Wydrukuj planszę
+        </button>
       </div>
       <div className="center">
         <div className="board">
@@ -167,6 +174,23 @@ function App() {
                   : tile.number !== 0
                   ? tile.number
                   : ""}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="panel panel-right">
+        <button onClick={() => setHinting(!hinting)}>
+          {hinting ? "Tryb podpowiedzi" : "Tryb normalny"}
+        </button>
+        <div className="nums-table">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
+            return (
+              <div
+                className={`num-cell ${nums[n] > 8 ? "num-all" : ""}`}
+                key={n + "n"}
+              >
+                {n}
               </div>
             );
           })}
